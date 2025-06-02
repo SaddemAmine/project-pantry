@@ -46,7 +46,7 @@ This app could evolve to include features like smart inventory tracking, meal pl
 ## 4. Architecture / Design
 - Frontend
     - iOS app using SwiftUI.
-    - IDC about Android yet.
+    - Kotlin for Android.
     - Probably something React based or maybe trying out Vue for the web app.
 - Backend
     - JS vs Python ?
