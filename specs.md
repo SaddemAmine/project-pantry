@@ -1,11 +1,19 @@
 # project-pantry: AHOY!
 
-## 1. Overview
+## Overview
 I’ve been struggling to keep track of what’s in my pantry, which inspired me to build a kitchen management app. The goal is to make it easier for people like me to stay organized and reduce food waste. What's very motivating and exciting is how there’s a lot of potential for growth within this idea.
 
 This app could evolve to include features like smart inventory tracking, meal planning, shopping list integration, and even expiration date reminders.
 
-## 2. Goals and Non-Goals
+## Table of Contents
+- [Goals and Non-Goals](#1-goals-and-non-goals)
+- [Requirements](#2-requirements)
+- [Architecture / Design](#3-architecture--design)
+- [User Stories / Use Cases](#4-user-stories--use-cases)
+- [Milestones & Timeline](#5-milestones--timeline)
+- [Risks & Assumptions](#6-risks--assumptions)
+
+## 1. Goals and Non-Goals
 ### Goals
 - Manage inventory.
     - Track what's in the pantry, expiration dates and quantities.
@@ -18,7 +26,7 @@ This app could evolve to include features like smart inventory tracking, meal pl
 ### Non-Goals
 - No super fancy AI stuff for now. I want to focus on the features and refine them before including that.
 
-## 3. Requirements
+## 2. Requirements
 ### Functional Requirements
 - User authentication
 - Managing pantry
@@ -43,7 +51,7 @@ This app could evolve to include features like smart inventory tracking, meal pl
 ### Non-Functional Requirements
 - Scalability, performance and availability
 
-## 4. Architecture / Design
+## 3. Architecture / Design
 - Frontend
     - iOS app using SwiftUI.
     - IDC about Android yet.
@@ -60,10 +68,33 @@ This app could evolve to include features like smart inventory tracking, meal pl
     - OAuth2 for social logins.
     - JWT for session management.
 
-## 5. User Stories / Use Cases
-TBD
+## 4. User Stories / Use Cases
+### General Stories
+As a user I want to be able to:
+- [ ] create an account.
+- [ ] log in to my account.
+- [ ] log out of my account.
+- [ ] reset my password.
+- [ ] update my profile information.
+- [ ] delete my account.
+- [ ] change my settings.
 
-## 6. Milestones & Timeline
+### Pantry Management Stories
+As a user I want to be able to:
+- [ ] add items to my pantry.
+- [ ] remove items from my pantry.
+- [ ] update items in my pantry.
+- [ ] quickly update my items quantities in my pantry.
+
+### Recipe Management Stories
+As a user I want to be able to:
+- [ ] add recipes to my collection.
+- [ ] remove recipes from my collection.
+- [ ] update recipes in my collection.
+- [ ] search for recipes based on ingredients I have.
+- [ ] cook a recipe, meaning I automatically update the used ingredients with the remaining quantities after cooking.
+
+## 5. Milestones & Timeline
 For now as long as effort is put into the project, I’m happy. I’m not in a rush to finish it, but I do want to make progress.
 
 ### Phase 1: MVP
@@ -83,7 +114,7 @@ UI should be simple and functional, nothing fancy yet. I want the focus to be on
 #### Phase N: TBD
 TBD
 
-## 7. Risks & Assumptions
+## 6. Risks & Assumptions
 ### Risks
 - Users might forget to update their pantry after using items... Maybe add a “cook meal” flow that updates it for them.
 
