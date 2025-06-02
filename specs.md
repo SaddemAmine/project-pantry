@@ -55,7 +55,7 @@ This app could evolve to include features like smart inventory tracking, meal pl
 ### High-Level Architecture
 - Frontend
     - iOS app using SwiftUI.
-    - IDC about Android yet.
+    - Kotlin for Android.
     - Probably something React based or maybe trying out Vue for the web app.
 - Backend
     - JS vs Python ?
