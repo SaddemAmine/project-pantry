@@ -52,6 +52,7 @@ This app could evolve to include features like smart inventory tracking, meal pl
 - Scalability, performance and availability
 
 ## 3. Architecture / Design
+### High-Level Architecture
 - Frontend
     - iOS app using SwiftUI.
     - IDC about Android yet.
@@ -67,6 +68,47 @@ This app could evolve to include features like smart inventory tracking, meal pl
     - Auth.js ? Is there an alternative for Python ?
     - OAuth2 for social logins.
     - JWT for session management.
+
+### Models
+All models will include an id, is_active, created_at and updated_at fields.
+Should the user be able to have multiple pantries? Maybe, but for now I’ll keep it simple and just have one pantry per user.
+
+- User
+    - username
+    - email
+    - password_hash
+- Item
+    - name
+    - description
+    - image_url
+    - time_to_expire (timestamp | null if not perishable)
+    - is_generic
+- PantryItem: linked to PantryItem and User
+    - quantity
+    - unit
+    - notes ? Could be interesting to make this an embedded JSON field for flexibility.
+- Recipe
+    - name
+    - description
+    - time_to_cook
+    - servings
+    - image_url
+    - dietary_tags (e.g. vegan, gluten-free, etc.)
+- RecipeItem: linked to Recipe and PantryItem
+    - quantity
+    - unit
+    - notes ?
+- RecipeInstruction: linked to Recipe
+    - step_number
+    - instruction_text
+    - media_url (optional, for images or videos)
+- Tag
+    - name
+    - description
+    - is_dietary (boolean, to differentiate between dietary tags and other tags)
+
+Marvel at this diagram (already outdated, but you get the picture):
+![High-Level Architecture Diagram](media/diagram.jpg)
 
 ## 4. User Stories / Use Cases
 ### General Stories
