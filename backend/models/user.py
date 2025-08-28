@@ -1,13 +1,18 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-from ..database import Base
+from sqlmodel import SQLModel, Field
 
-class User(Base):
-    __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, nullable=False)
-    email = Column(String, unique=True, nullable=True)
+class UserBase(SQLModel):
+    username: str
+    email: str | None = None
 
-    # Relationships
-    recipes = relationship("Recipe", back_populates="user")
+
+class User(UserBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+
+
+class UserCreate(UserBase):
+    pass
+
+
+class UserRead(UserBase):
+    id: int

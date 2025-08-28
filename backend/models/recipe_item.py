@@ -1,19 +1,21 @@
-from sqlalchemy import Column, Float, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from ..database import Base
+from sqlmodel import SQLModel, Field
 
 
-class RecipeItem(Base):
-    __tablename__ = 'recipe_items'
+class RecipeItemBase(SQLModel):
+    quantity: float = 1.0
+    unit: str | None = None
+    notes: str | None = None
+    item_id: int
+    recipe_id: int
 
-    id = Column(Integer, primary_key=True, index=True)
-    quantity = Column(Float, nullable=False, default=1)
-    unit = Column(String, nullable=True)  # Assuming UoM is stored as a string
-    notes = Column(String, nullable=True)
 
-    # Relationships
-    item_id = Column(Integer, ForeignKey('items.id'), nullable=False)
-    recipe_id = Column(Integer, ForeignKey('recipes.id'), nullable=False)
+class RecipeItem(RecipeItemBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
 
-    item = relationship("Item", back_populates="recipe_items")
-    recipe = relationship("Recipe", back_populates="items")
+
+class RecipeItemCreate(RecipeItemBase):
+    pass
+
+
+class RecipeItemRead(RecipeItemBase):
+    id: int

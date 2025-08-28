@@ -1,22 +1,22 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from ..database import Base
+from sqlmodel import SQLModel, Field
 
-class Recipe(Base):
-    __tablename__ = 'recipes'
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
-    description = Column(String, nullable=True)
-    time_to_cook = Column(Integer, default=0)  # Could be a time delta or timestamp in the future
-    image = Column(String, nullable=True)
-    servings = Column(Integer, default=1)
+class RecipeBase(SQLModel):
+    name: str
+    description: str | None = None
+    time_to_cook: int = 0
+    image: str | None = None
+    servings: int = 1
+    user_id: int | None = None
 
-    # TODO: Add tags
 
-    # Relationships
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+class Recipe(RecipeBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
 
-    user = relationship("User", back_populates="recipes")
-    ingredients = relationship("RecipeIngredient", back_populates="recipe")
-    instructions = relationship("RecipeInstruction", back_populates="recipe")
+
+class RecipeCreate(RecipeBase):
+    pass
+
+
+class RecipeRead(RecipeBase):
+    id: int

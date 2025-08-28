@@ -1,19 +1,14 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlmodel import SQLModel, create_engine, Session
+from .core.config import get_settings
 
-DATABASE_URL = "postgresql+psycopg2://postgres:@localhost/pantry"
-
-engine = create_engine(DATABASE_URL, echo=True)
-session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+settings = get_settings()
+engine = create_engine(settings.database_url, echo=False)
 
 
-class Base(DeclarativeBase):
-    pass
+def init_db():
+    SQLModel.metadata.create_all(engine)
 
 
-def get_db():
-    db = session()
-    try:
-        yield db
-    finally:
-        db.close()
+def get_session():
+    with Session(engine) as session:
+        yield session
