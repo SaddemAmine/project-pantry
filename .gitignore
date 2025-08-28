@@ -1,4 +1,16 @@
 .DS_Store
 .vscode
 venv-pantry/
+
+# Python cache directories & compiled bytecode
+__pycache__/
 **/__pycache__/
+*.py[cod]
+*$py.class
+
+# Test cache
+.pytest_cache/
+
+# Local env & db artifacts
+.env
+pantry.db

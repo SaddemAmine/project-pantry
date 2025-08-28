@@ -1,19 +1,23 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from ..database import Base
+from datetime import datetime
+from sqlmodel import SQLModel, Field
 
-class PantryItem(Base):
-    __tablename__ = 'pantry_items'
 
-    id = Column(Integer, primary_key=True, index=True)
-    expiration_date = Column(String, nullable=True)  # Switch to a delta ?
-    quantity = Column(Integer, default=1)
-    unit = Column(String, nullable=True)  # Enum in db ?
-    notes = Column(String, nullable=True)
+class PantryItemBase(SQLModel):
+    expiration_date: datetime | None = None
+    quantity: float = 1.0
+    unit: str | None = None
+    notes: str | None = None
+    user_id: int | None = None
+    item_id: int | None = None
 
-    # Relationships
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
-    item_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 
-    user = relationship("User", back_populates="pantry_items")
-    item = relationship("Item", back_populates="pantry_items")
+class PantryItem(PantryItemBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+
+
+class PantryItemCreate(PantryItemBase):
+    pass
+
+
+class PantryItemRead(PantryItemBase):
+    id: int

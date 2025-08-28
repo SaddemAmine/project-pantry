@@ -1,0 +1,2 @@
+alembic revision -m "init" --autogenerate
+alembic upgrade head
